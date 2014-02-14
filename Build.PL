@@ -29,11 +29,7 @@ my $build = Module::Build->new(
         'Moose'                => 0,
         'Test::More'           => 0,
         'UAV::Pilot'           => '>= 0.9',
-        'UAV::Pilot::ARDrone'  => 0,
         'XSLoader'             => 0,
-    },
-    recommends => {
-        'UAV::Pilot::SDL' => 0,
     },
 
     include_dirs         => ['.'],

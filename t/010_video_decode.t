@@ -1,50 +1,12 @@
-use Test::More tests => 10;
+use Test::More tests => 8;
 use v5.14;
 use UAV::Pilot;
-use UAV::Pilot::ARDrone::Driver::Mock;
-use UAV::Pilot::ARDrone::Video::Mock;
-use UAV::Pilot::ARDrone::Control;
 use UAV::Pilot::Video::H264Decoder;
 use UAV::Pilot::Video::Mock::RawHandler;
-use File::Temp ();
-use AnyEvent;
 use Test::Moose;
 
-use constant VIDEO_DUMP_FILE => 't_data/ardrone_video_stream_dump.bin';
-use constant MAX_WAIT_TIME   => 5;
+use constant VIDEO_DUMP_FILE => 't_data/frame.h264';
 
-
-package MockH264Handler;
-use Moose;
-with 'UAV::Pilot::Video::H264Handler';
-
-has 'real_vid' => (
-    is  => 'ro',
-    isa => 'UAV::Pilot::Video::H264Decoder',
-);
-
-sub process_h264_frame
-{
-    my ($self, @args) = @_;
-    my $real_vid = $self->real_vid;
-    $real_vid->process_h264_frame( @args );
-    exit 0;
-
-    # Never get here
-    return 1;
-}
-
-package MockH264Handler2;
-use Moose;
-with 'UAV::Pilot::Video::H264Handler';
-
-sub process_h264_frame
-{
-    Test::More::pass( 'Passed stacked handler' );
-}
-
-
-package main;
 
 my $display = UAV::Pilot::Video::Mock::RawHandler->new({
     cb => sub {
@@ -70,38 +32,14 @@ my $video = UAV::Pilot::Video::H264Decoder->new({
 isa_ok( $video => 'UAV::Pilot::Video::H264Decoder' );
 does_ok( $video => 'UAV::Pilot::Video::H264Handler' );
 
-my $cv = AnyEvent->condvar;
-my $mock_video = MockH264Handler->new({
-    real_vid => $video,
-});
-my $mock_video2 = MockH264Handler2->new;
-my $ardrone = UAV::Pilot::ARDrone::Driver::Mock->new({
-    host => 'localhost',
-});
-my $driver_video = UAV::Pilot::ARDrone::Video::Mock->new({
-    file     => VIDEO_DUMP_FILE,
-    handlers => [ $mock_video2, $mock_video ],
-    condvar  => $cv,
-    driver   => $ardrone,
-});
-isa_ok( $driver_video => 'UAV::Pilot::ARDrone::Video' );
 
-my $dev = UAV::Pilot::ARDrone::Control->new({
-    driver => $ardrone,
-    video  => $driver_video,
-});
+my @frame;
+open( my $fh, '<', VIDEO_DUMP_FILE )
+    or die "Can't open " . VIDEO_DUMP_FILE . ": $!\n";
+while( read( $fh, my $buf, 4096 ) ) {
+    push @frame, unpack( 'C*', $buf );
+}
+close $fh;
 
-my $timeout_timer; $timeout_timer = AnyEvent->timer(
-    after => MAX_WAIT_TIME,
-    cb    => sub {
-        fail( 'Did not get a frame after ' . MAX_WAIT_TIME . ' seconds' );
-        fail( 'Stub failure for test count matching' ) for 1 .. 6;
-        exit 1;
 
-        # Never get here
-        $timeout_timer;
-    },
-);
-
-$driver_video->init_event_loop;
-$cv->recv;
+$video->process_h264_frame( \@frame, 640, 480, 640, 480 );

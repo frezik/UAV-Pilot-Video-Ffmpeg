@@ -1,2 +1,0 @@
-* Don't depend on UAV::Pilot::ARDrone in test
-    * Create test data of a single h264 frame
