@@ -93,7 +93,7 @@ implemented in C, and a slow way for things implemented in Perl.
 =head2 get_last_frame_c_obj
 
 Returns a scalar which contains a pointer to the decoded AVFrame object.  In C, 
-you can derefernce the pointer to get the AVFrame and handle it from there.
+you can dereference the pointer to get the AVFrame and handle it from there.
 
 =head2 get_last_frame_pixel_arrayref
 
