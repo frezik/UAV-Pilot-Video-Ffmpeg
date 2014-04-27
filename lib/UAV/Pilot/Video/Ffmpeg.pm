@@ -27,7 +27,7 @@ use warnings;
 use Moose;
 use namespace::autoclean;
 
-our $VERSION = 0.1;
+our $VERSION = 0.2;
 
 
 no Moose;

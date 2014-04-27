@@ -1,0 +1,33 @@
+---
+abstract: 'Decode UAV video streams in real-time'
+author:
+  - 'Timm Murray <tmurray@wumpus-cave.net>'
+build_requires:
+  ExtUtils::CBuilder: '0'
+configure_requires:
+  Module::Build: '0.42'
+dynamic_config: 1
+generated_by: 'Module::Build version 0.4205, CPAN::Meta::Converter version 2.140630'
+license: bsd
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: '1.4'
+name: UAV-Pilot-Video-Ffmpeg
+provides:
+  UAV::Pilot::Video::Ffmpeg:
+    file: lib/UAV/Pilot/Video/Ffmpeg.pm
+    version: '0.1'
+  UAV::Pilot::Video::H264Decoder:
+    file: lib/UAV/Pilot/Video/H264Decoder.pm
+requires:
+  Alien::ffmpeg: '0'
+  Moose: '0'
+  Test::More: '0'
+  UAV::Pilot: '0.9'
+  XSLoader: '0'
+  namespace::autoclean: '0'
+  perl: v5.14.0
+resources:
+  license: http://opensource.org/licenses/BSD-3-Clause
+  repository: https://github.com/frezik/UAV-Pilot-Video-Ffmpeg
+version: '0.1'
