@@ -16,7 +16,7 @@ name: UAV-Pilot-Video-Ffmpeg
 provides:
   UAV::Pilot::Video::Ffmpeg:
     file: lib/UAV/Pilot/Video/Ffmpeg.pm
-    version: '0.1'
+    version: '0.2'
   UAV::Pilot::Video::H264Decoder:
     file: lib/UAV/Pilot/Video/H264Decoder.pm
 requires:
@@ -30,4 +30,4 @@ requires:
 resources:
   license: http://opensource.org/licenses/BSD-3-Clause
   repository: https://github.com/frezik/UAV-Pilot-Video-Ffmpeg
-version: '0.1'
+version: '0.2'

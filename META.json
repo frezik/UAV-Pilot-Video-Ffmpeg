@@ -39,7 +39,7 @@
    "provides" : {
       "UAV::Pilot::Video::Ffmpeg" : {
          "file" : "lib/UAV/Pilot/Video/Ffmpeg.pm",
-         "version" : "0.1"
+         "version" : "0.2"
       },
       "UAV::Pilot::Video::H264Decoder" : {
          "file" : "lib/UAV/Pilot/Video/H264Decoder.pm"
@@ -54,5 +54,5 @@
          "url" : "https://github.com/frezik/UAV-Pilot-Video-Ffmpeg"
       }
    },
-   "version" : "0.1"
+   "version" : "0.2"
 }

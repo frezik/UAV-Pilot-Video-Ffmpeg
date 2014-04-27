@@ -5,6 +5,8 @@ lib/UAV/Pilot/Video/H264Decoder.pm
 lib/UAV/Pilot/Video/H264Decoder.xs
 LICENSE
 MANIFEST			This list of files
+META.json
+META.yml
 ppport.h
 README
 ROADMAP
@@ -13,5 +15,3 @@ t/002_pod.t
 t/010_video_decode.t
 t_data/frame.h264
 uav.h
-META.yml
-META.json
