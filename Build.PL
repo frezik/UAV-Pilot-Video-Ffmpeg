@@ -20,12 +20,12 @@ my $build = Module::Build->new(
     license           => 'bsd',
     needs_compiler    => 1,
     build_requires    => {
-        'ExtUtils::CBuilder' => 0, # For FFmpeg; make optional with that
+        'ExtUtils::CBuilder' => 0,
     },
     requires          => {
         perl                   => '>= 5.14.0',
         'namespace::autoclean' => 0,
-        'Alien::ffmpeg'        => 0,
+        #'Alien::ffmpeg'        => 0,
         'Moose'                => 0,
         'Test::More'           => 0,
         'UAV::Pilot'           => '>= 0.9',
