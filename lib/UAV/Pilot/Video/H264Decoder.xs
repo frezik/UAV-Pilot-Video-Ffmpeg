@@ -61,7 +61,7 @@ BOOT:
 
     /* find the h264 video decoder */
     avcodec_register_all();
-    MY_CXT.codec = avcodec_find_decoder( CODEC_ID );
+    MY_CXT.codec = avcodec_find_decoder( CODEC_H264 );
     if (!MY_CXT.codec) {
         THROW_XS_ERROR( "Codec H264 not found" );
     }
