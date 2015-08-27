@@ -1,4 +1,8 @@
-0.2 
+0.3 2015-08-27
+
+- Add JPEG decoder
+
+0.2 2014-04-27
 
 - Busywork of license headers and POD errors test
 

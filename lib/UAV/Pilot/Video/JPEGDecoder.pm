@@ -21,17 +21,17 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 # POSSIBILITY OF SUCH DAMAGE.
-package UAV::Pilot::Video::H264Decoder;
+package UAV::Pilot::Video::JPEGDecoder;
 use v5.14;
 use Moose;
 use namespace::autoclean;
 
 require DynaLoader;
 our @ISA = qw(DynaLoader);
-bootstrap UAV::Pilot::Video::H264Decoder;
+bootstrap UAV::Pilot::Video::JPEGDecoder;
 
 
-with 'UAV::Pilot::Video::H264Handler';
+with 'UAV::Pilot::Video::JPEGHandler';
 
 has 'displays' => (
     is  => 'ro',
@@ -68,7 +68,7 @@ __END__
 
 =head1 NAME
 
-    UAV::Pilot::Video::H264Decoder
+    UAV::Pilot::Video::JPEGDecoder
 
 =head1 SYNOPSIS
 
@@ -76,14 +76,17 @@ __END__
     # UAV::Pilot::SDL::Video
     my $display = ...;
 
-    my $decoder = UAV::Pilot::Video::H264Decoder->new({
+    my $decoder = UAV::Pilot::Video::JPEGDecoder->new({
         displays => [ $display ],
     });
 
 =head1 DESCRIPTION
 
-Decodes a stream of h.264 frames using ffmpeg.  Does the
-C<UAV::Pilot::Video::H264Handler> role.
+Decodes a JPEG image using ffmpeg.  Does the
+C<UAV::Pilot::Video::JPEGHandler> role.
+
+Like C<UAV::Pilot::Video::H264Handler>, this can be used to decode a 
+stream of JPEG images for real-time video.
 
 =head1 FETCHING LAST PROCESSED FRAME
 

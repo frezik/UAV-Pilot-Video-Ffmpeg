@@ -28,7 +28,7 @@ my $build = Module::Build->new(
         #'Alien::ffmpeg'        => 0,
         'Moose'                => 0,
         'Test::More'           => 0,
-        'UAV::Pilot'           => '>= 0.9',
+        'UAV::Pilot'           => '1.3',
         'XSLoader'             => 0,
     },
 

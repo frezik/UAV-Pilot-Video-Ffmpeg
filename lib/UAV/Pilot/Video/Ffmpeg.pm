@@ -1,4 +1,4 @@
-# Copyright (c) 2014  Timm Murray
+# Copyright (c) 2015  Timm Murray
 # All rights reserved.
 # 
 # Redistribution and use in source and binary forms, with or without 
@@ -27,7 +27,7 @@ use warnings;
 use Moose;
 use namespace::autoclean;
 
-our $VERSION = 0.2;
+our $VERSION = 0.3;
 
 
 no Moose;
@@ -46,7 +46,7 @@ Hooks into the ffmpeg library to decode video frames in real-time.
 
 =head1 LICENSE
 
-Copyright (c) 2014  Timm Murray
+Copyright (c) 2015  Timm Murray
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without 
